@@ -1,6 +1,6 @@
 <?php
 $SERVER = 'cs4750.cs.virginia.edu';
-$USERNAME = 'sj7yj';
-$PASSWORD = '';
-$DATABASE = 'sj7yj';
+$USERNAME = 'at2fb';
+$PASSWORD = 'lambroghini';
+$DATABASE = 'at2fb';
 ?>
