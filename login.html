@@ -1,6 +1,6 @@
 <html>
 <head>
-  <title>Registration system PHP and MySQL</title>
+  <title>Login system PHP and MySQL</title>
 
   <!--Import Google Icon Font-->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -19,25 +19,18 @@
 
     <div class="row" align="center">
       <div class="header">
-        <h2>Sign Up</h2>
+        <h2>Login</h2>
       </div>
     </div>
 
-    
   	<div class = "row" align="center">
-      <form method="post" action="register.php">
+      <form method="post" action="login.php">
       	
         <div class = "row">
           <div class="input-group">
            
-            <input type="text" name="computingID" placeholder="Computing ID" class="validate" required="" aria-required="true" >
+            <input type="text" name="user" placeholder="Computing ID" class="validate" required="" aria-required="true" >
           </div>
-        </div>
-      	
-        <div class = "row" style=“margin-top: 50px;”>
-        	<div class="input-group">
-        	  <input type="text" name="major" placeholder="Major" class="validate" required="" aria-required="true">
-        	</div>
         </div>
 
         <div class = "row" style=“margin-top: 50px;”>
@@ -48,14 +41,8 @@
         </div>
 
         <div class = "row" style=“margin-top: 50px;”>
-        	<div class="input-group">
-        	  <input type="password" name="password_2" placeholder="Re-enter Password" class="validate" required="" aria-required="true">
-        	</div>
-        </div>
-
-        <div class = "row" style=“margin-top: 50px;”>
         	<div class="input-group" id= "submitBtn">
-        	  <button type="submit" class="btn grey darken-1" >Register</button>
+        	  <button type="submit" class="btn grey darken-1" >Login</button>
         	</div>
         </div>
       	
