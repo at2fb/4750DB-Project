@@ -7,20 +7,6 @@
  $errors = array(); 
 
 
-//  form validation: ensure that the form is correctly filled ...
-//   by adding (array_push()) corresponding error unto $errors array
-//   if (empty($_POST[computingID])) { array_push($errors, "computingID is required"); }
-//   if (empty($_POST[major])) { array_push($errors, "major is required"); }
-//   if (empty($_POST[password_1])) { array_push($errors, "Password is required"); }
-//   if ($password_1 != $password_2) {
-// 	array_push($errors, "The two passwords do not match");
-//   }
-
-// if (count($errors) > 0) {
-// 	foreach ($errors as $error) :
-// 		echo $error	
-// }
-
  if (mysqli_connect_errno())
  {
  echo "Failed to connect to MySQL: " . mysqli_connect_error();
@@ -39,10 +25,10 @@
   	mysqli_close($con);
    }
   
-  if (empty($_POST[major])) { 
-  	echo "Major is required";
-  	mysqli_close($con);
-   }
+  // if (empty($_POST[major])) { 
+  // 	echo "Major or Department is required";
+  // 	mysqli_close($con);
+  //  }
    if (empty($_POST[password_1])) { 
   	echo "passwords is required";
   	mysqli_close($con);
@@ -54,15 +40,66 @@
   
 
  // Form the SQL query (an INSERT query)
- $sql="INSERT INTO Users (computingID, major, password)
+
+//for Users for student
+$sqlU1="INSERT INTO Users (computingID, major, password)
  VALUES
  ('$_POST[computingID]','$_POST[major]','$_POST[password_1]')";
 
+//for Users for student
+$sqlU2="INSERT INTO Users (computingID, major, password)
+ VALUES
+ ('$_POST[computingID]','$_POST[depart]','$_POST[password_1]')";
 
- if (!mysqli_query($con,$sql))
- {
- die( mysqli_error($con));
+
+// for Students
+ $sqlS="INSERT INTO Student (computingID, major)
+ VALUES
+ ('$_POST[computingID]','$_POST[major]')";
+
+//Instructors
+ $sqlI="INSERT INTO Instructor (instructorID, department)
+ VALUES
+ ('$_POST[computingID]','$_POST[depart]')";
+
+
+//addes the data into the User table & student table
+ if (!empty($_POST[major])){
+  //for User 
+    if (!mysqli_query($con,$sqlU1))
+   {
+   die( mysqli_error($con));
+   }
+   echo "1 record added"; // Output to user
+
+   //for student
+    if (!mysqli_query($con,$sqlS))
+   {
+   die( mysqli_error($con));
+   }
+   echo "1 record added"; // Output to user
+   
+   mysqli_close($con);
  }
- echo "1 record added"; // Output to user
- mysqli_close($con);
+
+//addes the data into the User table & instructor table
+ else if (!empty($_POST[depart])){
+  //for User 
+    if (!mysqli_query($con,$sqlU2))
+   {
+   die( mysqli_error($con));
+   }
+   echo "1 record added"; // Output to user
+
+   //for student
+    if (!mysqli_query($con,$sqlI))
+   {
+   die( mysqli_error($con));
+   }
+   echo "1 record added"; // Output to user
+   
+   mysqli_close($con);
+ }
+
+
 ?>

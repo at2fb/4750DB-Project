@@ -33,11 +33,28 @@
             <input type="text" name="computingID" placeholder="Computing ID" class="validate" required="" aria-required="true" >
           </div>
         </div>
+
+        <div class="input-field">
+          <select id="position" onchange="change()">
+            <option value="" disabled selected>Choose your option</option>
+            <option value="1">Student</option>
+            <option value="2">Instructor</option>
+          </select>
+          <label>Position</label>
+        </div>
+
       	
         <div class = "row" style=“margin-top: 50px;”>
-        	<div class="input-group">
-        	  <input type="text" name="major" placeholder="Major" class="validate" required="" aria-required="true">
+
+        	<div id="studentF" class="input-group" style="display: none">
+        	  <input type="text" name="major" placeholder="Major" >
         	</div>
+
+          <div id="instructorF" class="input-group" style="display: none">
+            <input type="text" name="depart" placeholder="Department" >
+          </div>
+
+
         </div>
 
         <div class = "row" style=“margin-top: 50px;”>
@@ -66,10 +83,10 @@
   <link rel="stylesheet" type="text/css" href="./UI/add.css">
 
   <script type="text/javascript" src="register.js"></script>
-  </script>
   </div>
 
 </div>
+
 
 </body>
 </html>
