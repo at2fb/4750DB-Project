@@ -1,0 +1,82 @@
+<html>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<div class='container'>
+ <table border='1' >
+  <tr style='background: whitesmoke;'>
+    <th>computingID</th>
+   <th>sectionID</th>
+  </tr>
+
+  <?php 
+  session_start();
+
+  include_once("./library.php"); // To connect to the database
+  $con = new mysqli($SERVER, $USERNAME, $PASSWORD, $DATABASE);
+  
+  $count = 0;
+  $computingID = $_SESSION['computingID'];
+
+  //$query = "SELECT * FROM Takes WHERE computingID = ".$computingID;
+  $query = "SELECT * FROM Takes;
+  $result = mysqli_query($con,$query);
+
+  $count = 1;
+  while($row = mysqli_fetch_array($result) ){
+    $computingID = $row['computingID'];
+    $sectionID = $row['sectionID'];
+    $id = $count;
+    $count += 1;
+
+  ?>
+    <tr>
+     <td align='center'><?php echo $computingID; ?></td>
+     <td><?php echo $sectionID; ?></a></td>
+     <td align='center'>
+       <span class='delete' id='del_<?php echo $id; ?>'>Delete</span>
+     </td>
+    </tr>
+  
+ </table>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+
+ // Delete 
+ $('.delete').click(function(){
+   // var el = this;
+   // var id = this.id;
+   // var splitid = id.split("_");
+
+   // // Delete id
+   // var deleteid = splitid[1];
+  
+    var c = this.computingID;
+    var s = this.sectionID;
+   // AJAX Request
+   $.ajax({
+     url: 'test.php',
+     type: 'POST',
+     data: { sectionID:s , computingID:c },
+     success: function(response){
+
+       if(response == 1){
+   // Remove row from HTML Table
+   $(el).closest('tr').css('background','tomato');
+   $(el).closest('tr').fadeOut(800,function(){
+      $(this).remove();
+   });
+      }else{
+   alert('Invalid ID.');
+      }
+
+    }
+   });
+
+ });
+
+});
+</script>
+</html>

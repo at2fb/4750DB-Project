@@ -1,33 +1,36 @@
-<!DOCTYPE html>
-<html>
-<table>
-    <tr>
-    <th>Section ID
-    </tr>
+<?php 
+session_start();
 
-    <tbody id="data"></tbody>
-</table>
-</html>
-<script>
-    var ajax = new XMLHttpRequest();
-    ajax.open("GET", "connect.php", true);
-    ajax.send();
+include_once("./library.php"); // To connect to the database
+$con = new mysqli($SERVER, $USERNAME, $PASSWORD, $DATABASE);
 
-    ajax.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            var data = JSON.parse(this.responseText);
-            console.log(data);
+$sectionID = $_POST['sectionID'];
+$computingID = $POST['computingID'];
 
-            var html = "";
-            for(var a = 0; a < data.length; a++) {
-                var sectionID = data[a].sectionID;
+$query = "DELETE FROM Takes WHERE (sectionID= $sectionID AND computingID = $computingID)" ;
+mysqli_query($con,$query);
+echo 1;
+exit;
 
-                html += "<tr>";
-                    html += "<td>" + sectionID + "</td>";
-                html += "</tr>";
-            }
-            document.getElementById("data").innerHTML += html;
-        }
-    };
-</script>
-</html>
+// if($id > 0){
+
+//     $query = "DELETE FROM Takes WHERE id=".$id;
+//     mysqli_query($con,$query);
+//     echo 1;
+//     exit;
+
+//   // // Check record exists
+//   // $checkRecord = mysqli_query($con,"SELECT * FROM posts WHERE id=".$id);
+//   // $totalrows = mysqli_num_rows($checkRecord);
+
+//   // if($totalrows > 0){
+//   //   // Delete record
+//   //   $query = "DELETE FROM posts WHERE id=".$id;
+//   //   mysqli_query($con,$query);
+//   //   echo 1;
+//   //   exit;
+//   // }
+// }
+
+// echo 0;
+// exit;
