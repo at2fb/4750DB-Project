@@ -1,132 +1,77 @@
 <html>
-	<head>
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-		<link rel="stylesheet" type="text/css" href="UI/add.css">
-		<!--Import materialize.css-->
- 	 <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"  media="screen,projection"/>
+<head>
 
- 	<!--  <script>
-	function showUser(str) {
-	    if (str == "") {
-	        document.getElementById("txtHint").innerHTML = "";
-	        return;
-	    } else {
-	        if (window.XMLHttpRequest) {
-	            // code for IE7+, Firefox, Chrome, Opera, Safari
-	            xmlhttp = new XMLHttpRequest();
-	        } else {
-	            // code for IE6, IE5
-	            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-	        }
-	        xmlhttp.onreadystatechange = function() {
-	            if (this.readyState == 4 && this.status == 200) {
-	                document.getElementById("txtHint").innerHTML = this.responseText;
-	            }
-	        };
-	        xmlhttp.open("GET","test.php?q="+str,true);
-	        xmlhttp.send();
-	    }
-	}
-	</script> -->
+<script>
+function showClasses() {
+    
+        if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("classList").innerHTML = this.responseText;
+            }
+        };
+        xmlhttp.open("GET","ajaxSections.php?q=",true);
+        xmlhttp.send();
+    
+}
 
-	</head>
+function deleteFunc(sectionID) {
+    // console.log(sectionID)
+    if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("classList").innerHTML = this.responseText;
+            }
+        };
+        xmlhttp.open("GET","ajaxSections.php?q="+sectionID,true);
+        xmlhttp.send();
 
-	<body>
-		<div class="container" id="main">
-			<form method="post" action="add.php" onchange="showUser(userInput)">
-			<!-- <form method="post" > -->
-				<input id = "userInput" type="text" name="sectionID" placeholder="Section ID" class="validate" required="" aria-required="true" >
+}
 
-				 <!-- <button type="submit" onclick="add(); return false;">Submit</button> -->
-				 <button type="submit" >Submit</button>
-			</form>
+function addClass() {
+    // console.log(sectionID)
+    if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("classList").innerHTML = this.responseText;
+            }
+        };
+        xmlhttp.open("GET","ajaxSections.php?q="+'hello',true);
+        xmlhttp.send();
 
-			<table border='1' >
-			  <tr style='background: whitesmoke;'>
-			    <th>computingID</th>
-			   <th>sectionID</th>
-			  </tr>
+}
+</script>
+</head>
+<body onload="showClasses()">
 
-			  <?php 
-			  session_start();
+	<form  action="ajaxSections.php">
+		<!-- <form method="post" > -->
+		Class to add:<br>
+		<input type="text" name="classToAdd" placeholder="Section ID" value= "" class="validate" required="" aria-required="true" >
+		<input type="submit" value="Submit" >
 
-			  include_once("./library.php"); // To connect to the database
-			  $con = new mysqli($SERVER, $USERNAME, $PASSWORD, $DATABASE);
-			  
-			  $count = 0;
-			  $computingID = $_SESSION['computingID'];
+	</form>
 
-			  $query = "SELECT * FROM Takes WHERE computingID = 'sj7yj'";
-			  
-			  $result = mysqli_query($con,$query);
+<br>
+<div id="classList"></b></div>
 
-			  $count = 1;
-			  while($row = mysqli_fetch_array($result) ){
-			    $computingID = $row['computingID'];
-			    $sectionID = $row['sectionID'];
-			    $id = $count;
-			    $count += 1;
-
-			  ?>
-			    <tr>
-			     <td align='center'><?php echo $computingID; ?></td>
-			     <td><?php echo $sectionID; ?></a></td>
-			     <td align='center'>
-			       <span class='delete' id='del_<?php echo $id; ?>'>Delete</span>
-			     </td>
-			    </tr>
-			  
-			 </table>
-
-			<!-- <div id="txtHint"><b>Person info will be listed here...</b></div> -->
-		</div>
-		
-
-		<script type="text/javascript">
-				
-		</script>
-
-		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-		<script type="text/javascript" src="add.js"></script>
-
-		<script type="text/javascript">
-		  $(document).ready(function(){
-
-		 // Delete 
-		 $('.delete').click(function(){
-		   // var el = this;
-		   // var id = this.id;
-		   // var splitid = id.split("_");
-
-		   // // Delete id
-		   // var deleteid = splitid[1];
-		  
-		    var c = this.computingID;
-		    var s = this.sectionID;
-		   // AJAX Request
-		   $.ajax({
-		     url: 'test.php',
-		     type: 'POST',
-		     data: { sectionID:s , computingID:c },
-		     success: function(response){
-
-		       if(response == 1){
-		   // Remove row from HTML Table
-		   $(el).closest('tr').css('background','tomato');
-		   $(el).closest('tr').fadeOut(800,function(){
-		      $(this).remove();
-		   });
-		      }else{
-		   alert('Invalid ID.');
-		      }
-
-		    }
-		   });
-
-		 });
-
-		});
-		</script>
-	</body>
-
+</body>
 </html>
