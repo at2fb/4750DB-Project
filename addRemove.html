@@ -1,0 +1,34 @@
+<html>
+	<head>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="UI/add.css">
+		<!--Import materialize.css-->
+ 	 <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"  media="screen,projection"/>
+	</head>
+
+	<body>
+		<div class="container" id="main">
+			<form method="post" action="add.php" >
+			<!-- <form method="post" > -->
+				<input id = "userInput" type="text" name="sectionID" placeholder="Section ID" class="validate" required="" aria-required="true" >
+
+				 <!-- <button type="submit" onclick="add(); return false;">Submit</button> -->
+				 <button type="submit" >Submit</button>
+			</form>
+
+			<!--List box that shows the sections added-->
+			<ul id = "sections">
+			</ul>
+		</div>
+		
+
+		<script type="text/javascript">
+				
+		</script>
+
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+		<script type="text/javascript" src="add.js"></script>
+
+	</body>
+
+</html>

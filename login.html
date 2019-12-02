@@ -1,0 +1,66 @@
+<html>
+<head>
+  <title>Login system PHP and MySQL</title>
+
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Import materialize.css-->
+  <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"  media="screen,projection"/>
+
+  <script type="text/javascript" src="http://livejs.com/live.js"></script>
+
+  <!--Back groud photo by Patrick Schneider on Unsplash-->
+
+</head>
+<body>
+
+  <div id = "main" class = "container" >
+
+
+    <div class="row" align="center">
+      <div class="header">
+        <h2>Login</h2>
+      </div>
+    </div>
+
+  	<div class = "row" align="center">
+      <form method="post" action="login.php">
+      	
+        <div class = "row">
+          <div class="input-group">
+           
+            <input type="text" name="computingID" placeholder="Computing ID" class="validate" required="" aria-required="true" >
+          </div>
+        </div>
+
+        <div class = "row" style=“margin-top: 50px;”>
+        	<div class="input-group">
+        	
+        	  <input type="password" name="password_1" placeholder="Password" class="validate" required="" aria-required="true">
+        	</div>
+        </div>
+
+        <div class = "row" style=“margin-top: 50px;”>
+          <a href="register.html"><u>New User</u></a>
+        </div>
+
+        <div class = "row" style=“margin-top: 50px;”>
+        	<div class="input-group" id= "submitBtn">
+        	  <button type="submit" class="btn grey darken-1" >Login</button>
+        	</div>
+        </div>
+      	
+      </form>
+
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="./UI/add.css">
+
+  <script type="text/javascript" src="register.js"></script>
+  </script>
+  </div>
+
+</div>
+
+</body>
+</html>
