@@ -17,7 +17,7 @@ $q = htmlspecialchars($_GET['q']);
 $check = substr($q, 0, 3);
 
 
-$con = mysqli_connect('cs4750.cs.virginia.edu','sj7yj','?Dndbquddkfl1240','sj7yj');
+$con = mysqli_connect('','','','');
 if (!$con) {
     die('Could not connect: ' . mysqli_error($con));
 }
