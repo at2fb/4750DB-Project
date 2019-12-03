@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         
         if($_SESSION['computingID']) {
             header('location: add.php');
-            header('location: test.php')
+            header('location: ajaxSections.php');
         }
     }
 
@@ -59,17 +59,11 @@ if (!mysqli_query($con,$sql)){
 }
 
 if ($result->num_rows > 0) {
-  // header( "Location: addPHP.html" )
-  header( "Location: addRemove.html" )
-  // output data of each row
-	// header( "Location: addRemove.html" ); 
-
-  // echo "Login Successful";
+  header( "Location: addRemove.html" );
   } 
 else {
 	header( "Location: login.html" ); //if there is an error, takes the user back to the same page
 
-  // echo "That computing ID and password combination was not found.";
 }
 
 

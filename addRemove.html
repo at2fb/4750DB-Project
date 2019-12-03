@@ -1,5 +1,10 @@
 <html>
 <head>
+	<!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Import materialize.css-->
+  <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"  media="screen,projection"/>
+
 
 <script>
 function showClasses() {
@@ -41,6 +46,7 @@ function deleteFunc(sectionID) {
 }
 
 function addClass() {
+	var classToAdd = document.getElementById('classToAdd').value;
     // console.log(sectionID)
     if (window.XMLHttpRequest) {
             // code for IE7+, Firefox, Chrome, Opera, Safari
@@ -54,24 +60,33 @@ function addClass() {
                 document.getElementById("classList").innerHTML = this.responseText;
             }
         };
-        xmlhttp.open("GET","ajaxSections.php?q="+'hello',true);
+        xmlhttp.open("GET","ajaxSections.php?q=add"+classToAdd,true);
         xmlhttp.send();
 
 }
 </script>
 </head>
 <body onload="showClasses()">
+	<div class = "container" id = "main"> 
+		<form  action="ajaxSections.php">
+			<!-- <form method="post" > -->
+			<h4 align="center">Class to add</h4>
 
-	<form  action="ajaxSections.php">
-		<!-- <form method="post" > -->
-		Class to add:<br>
-		<input type="text" name="classToAdd" placeholder="Section ID" value= "" class="validate" required="" aria-required="true" >
-		<input type="submit" value="Submit" >
+			
+				
+			<input id = "classToAdd" type="text"  placeholder="Section ID" value= "" class="validate" required="" aria-required="true" >
+			<div style="display: flex;justify-content: center ">
+				<button class="waves-effect waves-light btn btn-small " onclick="addClass();return false;">Submit</button>
+			</div>
+			
+			
+		</form>
 
-	</form>
+	<br>
+	<div id="classList"></b></div>
+</div>
 
-<br>
-<div id="classList"></b></div>
+<link rel="stylesheet" type="text/css" href="./UI/add.css">
 
 </body>
 </html>
